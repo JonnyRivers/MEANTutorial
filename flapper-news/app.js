@@ -43,4 +43,10 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
+var mongoose = require('mongoose');
+require('./models/Comments');
+require('./models/Posts');
+
+mongoose.connect('mongodb://localhost/news');
+
 module.exports = app;
