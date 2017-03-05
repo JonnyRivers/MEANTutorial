@@ -5,6 +5,12 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
+var mongoose = require('mongoose');
+require('./models/Comments');
+require('./models/Posts');
+
+mongoose.connect('mongodb://localhost/news');
+
 var index = require('./routes/index');
 var users = require('./routes/users');
 
@@ -42,11 +48,5 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
-
-var mongoose = require('mongoose');
-require('./models/Comments');
-require('./models/Posts');
-
-mongoose.connect('mongodb://localhost/news');
 
 module.exports = app;
